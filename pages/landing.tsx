@@ -29,7 +29,7 @@ const Landing = () => {
             // objectFit='contain'
           />
         </div>
-        <div style={{ padding: '0px 50px', width: '100%' }}>
+        <div style={{ padding: '0px 50px' }}>
           <RegisterBox />
         </div>
       </div>

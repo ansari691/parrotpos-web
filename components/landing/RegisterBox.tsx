@@ -5,7 +5,7 @@ import RegisterBox3 from './RegisterBox3';
 import RegisterBox4 from './RegisterBox4';
 
 const RegisterBox = () => {
-  const [currentPage, setCurrentPage] = useState(3);
+  const [currentPage, setCurrentPage] = useState(1);
 
   const currentPageContent = (currentPage: number) => {
     switch (currentPage) {
