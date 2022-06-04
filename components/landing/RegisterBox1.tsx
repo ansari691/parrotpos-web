@@ -14,9 +14,11 @@ import axios from 'axios';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { COLORS } from '../../constants/colors';
+import { useSnackAlert } from '../../hooks/useSnackAlert';
 
 const RegisterBox1 = ({ currentPage, setCurrentPage }: any) => {
   const router = useRouter();
+  const showSnackAlert = useSnackAlert();
 
   const [values, setValues] = React.useState({
     name: '',
@@ -47,9 +49,9 @@ const RegisterBox1 = ({ currentPage, setCurrentPage }: any) => {
       if (response.data.message === 'OTP Sent for Email Verification') {
         setCurrentPage(2);
         router.replace(`/?email=${values.email}`, undefined, { shallow: true });
-        alert('user created successfully');
+        showSnackAlert('success', 'OTP sent successfully!');
       } else {
-        alert(response.data.message);
+        showSnackAlert('success', response.data.message);
       }
     } catch (error) {
       alert('user creation failed');
@@ -64,7 +66,7 @@ const RegisterBox1 = ({ currentPage, setCurrentPage }: any) => {
         borderRadius: 6,
         maxWidth: 620,
         // minWidth: 450,
-        heigth: '80vh',
+        maxHeight: 900,
       }}
     >
       <Typography

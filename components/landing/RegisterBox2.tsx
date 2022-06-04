@@ -14,12 +14,13 @@ const RegisterBox2 = ({ currentPage, setCurrentPage }: any) => {
         py: 2,
         borderRadius: 6,
         maxWidth: 620,
-        // minWidth: 450,
+        minWidth: 350,
         width: '100%',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        height: '80vh',
+        minHeight: 630,
+        maxHeight: 900,
       }}
     >
       <div
@@ -29,6 +30,7 @@ const RegisterBox2 = ({ currentPage, setCurrentPage }: any) => {
           alignSelf: 'flex-start',
           cursor: 'pointer',
           color: COLORS.grey,
+          marginBottom: 20,
         }}
       >
         <ArrowBackIcon />

@@ -2,6 +2,8 @@ import '../styles/globals.css';
 import type { AppProps } from 'next/app';
 import { createTheme, ThemeProvider } from '@mui/material';
 import { COLORS } from '../constants/colors';
+import { SnackAlert } from '../components/SnackAlert';
+import { createContext, useState } from 'react';
 
 const theme = createTheme({
   typography: {
@@ -49,8 +51,8 @@ const theme = createTheme({
           background: COLORS.grey1,
           borderRadius: 15,
           borderColor: COLORS.green,
-        }
-      }
+        },
+      },
     },
     MuiTableCell: {
       styleOverrides: {
@@ -62,10 +64,32 @@ const theme = createTheme({
   },
 });
 
+export const AppContext = createContext<{
+  setSnackData: (
+    snackData: {
+      severity: 'info' | 'error' | 'warning' | 'success';
+      message: string;
+    } | null
+  ) => void;
+}>({
+  setSnackData: () => {},
+});
+
 function MyApp({ Component, pageProps }: AppProps) {
+  const [snackData, setSnackData] = useState<{
+    severity: 'info' | 'error' | 'warning' | 'success';
+    message: string;
+  } | null>(null);
   return (
     <ThemeProvider theme={theme}>
+      <AppContext.Provider
+        value={{
+          setSnackData,
+        }}
+      >
       <Component {...pageProps} />
+      <SnackAlert snackData={snackData} setSnackData={setSnackData} />
+      </AppContext.Provider>
     </ThemeProvider>
   );
 }

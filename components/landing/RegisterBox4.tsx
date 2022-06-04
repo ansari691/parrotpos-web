@@ -13,6 +13,8 @@ const RegisterBox4 = ({ currentPage, setCurrentPage }: any) => {
         borderRadius: 6,
         maxWidth: 620,
         // minWidth: 500,
+        minHeight: 630,
+        maxHeight: 900,
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',

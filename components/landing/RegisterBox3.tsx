@@ -5,9 +5,11 @@ import { useState } from 'react';
 import OtpInput from 'react-otp-input';
 import { COLORS } from '../../constants/colors';
 import axios from 'axios';
+import { useSnackAlert } from '../../hooks/useSnackAlert';
 
 const RegisterBox3 = ({ currentPage, setCurrentPage }: any) => {
   const [otp, setOtp] = useState('');
+  const showSnackAlert = useSnackAlert();
 
   console.log(otp);
 
@@ -22,11 +24,10 @@ const RegisterBox3 = ({ currentPage, setCurrentPage }: any) => {
         }
       );
       if (response.data.status === 200) {
-        alert('otp verified successfully');
-        setCurrentPage(4)
-      }
-      else {
-        alert('otp verification failed');
+        showSnackAlert('success', 'otp verified successfully');
+        setCurrentPage(4);
+      } else {
+        showSnackAlert('error', 'otp verification failed');
       }
       console.log(response);
     } catch (error) {
@@ -41,8 +42,11 @@ const RegisterBox3 = ({ currentPage, setCurrentPage }: any) => {
         py: 2,
         borderRadius: 6,
         maxWidth: 620,
+        minHeight: 630,
+        maxHeight: 900,
         display: 'flex',
         flexDirection: 'column',
+
         // alignItems: 'center',
       }}
     >

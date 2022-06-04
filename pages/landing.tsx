@@ -1,4 +1,4 @@
-import { useMediaQuery } from '@mui/material';
+import { Box, useMediaQuery } from '@mui/material';
 import Image from 'next/image';
 import RegisterBox from '../components/landing/RegisterBox';
 
@@ -14,24 +14,32 @@ const Landing = () => {
           display: 'flex',
           flexDirection: 'row',
           // ...(useMediaQuery('(max-Width:800px') && { flexWrap:  'wrap' }),
-          flexWrap: 'wrap',
+          flexWrap: useMediaQuery('(max-width:1382px)') ? 'wrap' : 'nowrap',
           justifyContent: 'center',
           rowGap: 50,
         }}
       >
-        <div style={{ alignSelf: 'center', flexGrow: 1, textAlign: 'center' }}>
-          <Image
-            src="/landing/Tablet login-rafiki.png"
-            alt="tableGirl"
-            width={860}
-            height={490}
-            //         layout='fill'
-            // objectFit='contain'
+        <Box
+          hidden={useMediaQuery('(max-width:800px)')}
+          sx={{
+            alignSelf: 'center',
+            textAlign: 'center',
+            maxWidth: 1147,
+            maxHeight: 740,
+            // flexGrow: 1,
+            px: 5,
+          }}
+        >
+          <img
+            src="/landing/landing_svg.svg"
+            alt=""
+            width={'100%'}
+            height={'auto'}
           />
-        </div>
-        <div style={{ padding: '0px 50px' }}>
+        </Box>
+        <Box sx={{ px: '3%' }}>
           <RegisterBox />
-        </div>
+        </Box>
       </div>
     </>
   );
