@@ -46,7 +46,7 @@ const RegisterBox4 = ({ currentPage, setCurrentPage }: any) => {
           mt: 5,
           mb: 3,
           background: `transparent linear-gradient(180deg, #F8F8F9 0%, #1B75BB 0%, #2B388F 100%) 0% 0% no-repeat padding-box`,
-          borderRadius: 3
+          borderRadius: 3,
         }}
         fullWidth
       >
@@ -59,7 +59,33 @@ const RegisterBox4 = ({ currentPage, setCurrentPage }: any) => {
         <Divider />
       </div>
 
-      <Image src="/landing/stores.png" alt="mailbox" width={203} height={143} />
+      <div style={{ marginBottom: 6 }}>
+        <a
+          href="https://play.google.com/store/apps/details?id=com.parrotpos.parrotpos2"
+          target={'_blank'}
+          rel="noreferrer"
+        >
+          <Image
+            src="/landing/playstore.png"
+            alt="mailbox"
+            width={203}
+            height={60}
+          />
+        </a>
+      </div>
+
+      <a
+        href="https://apps.apple.com/us/app/parrotpos/id1548119283"
+        target={'_blank'}
+        rel="noreferrer"
+      >
+        <Image
+          src="/landing/appstore.png"
+          alt="mailbox"
+          width={203}
+          height={60}
+        />
+      </a>
     </Paper>
   );
 };

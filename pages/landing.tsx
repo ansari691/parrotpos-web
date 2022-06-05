@@ -22,7 +22,7 @@ const Landing = () => {
         <Box
           hidden={useMediaQuery('(max-width:800px)')}
           sx={{
-            alignSelf: 'center',
+            // alignSelf: 'center',
             textAlign: 'center',
             maxWidth: 1147,
             maxHeight: 740,

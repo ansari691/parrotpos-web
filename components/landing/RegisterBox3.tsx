@@ -6,10 +6,12 @@ import OtpInput from 'react-otp-input';
 import { COLORS } from '../../constants/colors';
 import axios from 'axios';
 import { useSnackAlert } from '../../hooks/useSnackAlert';
+import { useRouter } from 'next/router';
 
 const RegisterBox3 = ({ currentPage, setCurrentPage }: any) => {
   const [otp, setOtp] = useState('');
   const showSnackAlert = useSnackAlert();
+  const router = useRouter();
 
   console.log(otp);
 
@@ -21,13 +23,14 @@ const RegisterBox3 = ({ currentPage, setCurrentPage }: any) => {
         {
           session_id: localStorage.getItem('ppwSessionId'),
           otp,
+          referral_code: router.query.referralCode,
         }
       );
       if (response.data.status === 200) {
-        showSnackAlert('success', 'otp verified successfully');
+        showSnackAlert('success', 'OTP verified successfully!');
         setCurrentPage(4);
       } else {
-        showSnackAlert('error', 'otp verification failed');
+        showSnackAlert('error', 'OTP verification failed!');
       }
       console.log(response);
     } catch (error) {
