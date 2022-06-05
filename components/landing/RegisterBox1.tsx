@@ -88,11 +88,21 @@ const RegisterBox1 = ({ currentPage, setCurrentPage }: any) => {
       name: Yup.string().label('User name').required(),
       email: Yup.string().label('Email').email().required(),
       phone_number: Yup.string().label('Phone Number').min(10).required(),
-      password: Yup.string().label('Password').min(8).max(20).required(),
-      confirmPassword: Yup.string().oneOf(
-        [Yup.ref('password')],
-        'Passwords must match'
-      ),
+      password: Yup.string()
+        .test(
+          'passedRegex',
+          'Uppercase, Lowercase and number required',
+          //@ts-ignore
+          (value) => value?.match(/(?=.*\d)(?=.*[a-z])(?=.*[A-Z])/)
+        )
+        .label('Password')
+        .min(8)
+        .max(20)
+        .required(),
+      confirmPassword: Yup.string()
+        .label('Confirm Password')
+        .required()
+        .oneOf([Yup.ref('password')], 'Passwords must match'),
     }),
   });
 
@@ -228,6 +238,7 @@ const RegisterBox1 = ({ currentPage, setCurrentPage }: any) => {
             name="confirmPassword"
             id="outlined-basic"
             placeholder="Confirm password"
+            style={{ maxWidth: 400 }}
             // helperText="Must be atleast 8 characters"
             type={formikProps.values.showConfirmPassword ? 'text' : 'password'}
             value={formikProps.values.confirmPassword}
