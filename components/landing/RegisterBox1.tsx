@@ -119,7 +119,7 @@ const RegisterBox1 = ({ currentPage, setCurrentPage }: any) => {
       }}
     >
       <form onSubmit={formikProps.handleSubmit}>
-        <Typography
+        {/* <Typography
           style={{ color: COLORS.green, marginBottom: 0, fontSize: 22 }}
         >
           Welcome to Parrotpos
@@ -127,7 +127,12 @@ const RegisterBox1 = ({ currentPage, setCurrentPage }: any) => {
         <Typography sx={{ mt: 0, color: COLORS.grey }}>
           Sign up with referral code to get{' '}
           <span style={{ color: COLORS.green }}>RM10</span> for your friend !
-        </Typography>
+        </Typography> */}
+
+        <div style={{ textAlign: 'center' }}>
+          <img src="/landing/logo1_svg.svg" width={200} height={100} />
+        </div>
+
 
         <p style={{ marginBottom: 0 }}>Username*</p>
 
@@ -267,7 +272,7 @@ const RegisterBox1 = ({ currentPage, setCurrentPage }: any) => {
           />
           {Boolean(
             formikProps.touched.confirmPassword &&
-              formikProps.errors.confirmPassword
+            formikProps.errors.confirmPassword
           ) && <ErrorHelperText error={formikProps.errors.confirmPassword} />}
         </div>
 

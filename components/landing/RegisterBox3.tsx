@@ -1,7 +1,7 @@
-import { Button, Paper, TextField, Typography } from '@mui/material';
+import { Box, Button, Paper, Typography } from '@mui/material';
 import Image from 'next/image';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import OtpInput from 'react-otp-input';
 import { COLORS } from '../../constants/colors';
 import axios from 'axios';
@@ -10,6 +10,7 @@ import { useRouter } from 'next/router';
 
 const RegisterBox3 = ({ currentPage, setCurrentPage }: any) => {
   const [otp, setOtp] = useState('');
+  const [timeRemaining, setTimeRemaining] = useState(60);
   const showSnackAlert = useSnackAlert();
   const router = useRouter();
 
@@ -37,6 +38,14 @@ const RegisterBox3 = ({ currentPage, setCurrentPage }: any) => {
       alert('otp verification failed');
     }
   };
+
+  useEffect(() => {
+    if (timeRemaining == 0) return;
+    setTimeout(() => {
+      setTimeRemaining(timeRemaining - 1)
+    }, 1000);
+  }, [timeRemaining])
+
   return (
     <Paper
       elevation={3}
@@ -80,7 +89,16 @@ const RegisterBox3 = ({ currentPage, setCurrentPage }: any) => {
         </Typography>
       </div>
 
-      <div style={{ display: 'flex', justifyContent: 'center', marginTop: 50 }}>
+      <Box sx={{ pt: 3, textAlign: 'center', color: COLORS.grey }}>
+        {timeRemaining > 0 ? (
+          <>
+            <Typography>{timeRemaining} seconds</Typography>
+            <Typography>( Time remaining )</Typography>
+          </>
+        ) : (<Typography color="error">OTP expired. Please resend OTP.</Typography>)}
+      </Box>
+
+      <div style={{ display: 'flex', justifyContent: 'center', marginTop: 5 }}>
         <OtpInput
           value={otp}
           onChange={(otp: any) => setOtp(otp)}
@@ -120,8 +138,8 @@ const RegisterBox3 = ({ currentPage, setCurrentPage }: any) => {
       <Button
         onClick={() => verifyOtp()}
         sx={{
-          mt: 5,
-          mb: 3,
+          mt: 3,
+          mb: 5,
           background: `transparent linear-gradient(180deg, #F8F8F9 0%, #1B75BB 0%, #2B388F 100%) 0% 0% no-repeat padding-box`,
           borderRadius: 3,
         }}
