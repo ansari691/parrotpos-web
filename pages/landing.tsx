@@ -5,9 +5,11 @@ import RegisterBox from '../components/landing/RegisterBox';
 const Landing = () => {
   return (
     <>
-      <div style={{ padding: '20px 30px' }}>
+      <div hidden={useMediaQuery('(max-width:1382px)')} style={{ padding: '20px 30px' }}>
         <Image src="/landing/logo.png" alt="logo" height={50} width={120} />
       </div>
+
+      {useMediaQuery('(max-width:1382px)') && (<><br/><br /><br /></>)}
 
       <div
         style={{
@@ -20,7 +22,7 @@ const Landing = () => {
         }}
       >
         <Box
-          hidden={useMediaQuery('(max-width:800px)')}
+          // hidden={useMediaQuery('(max-width:800px)')}
           sx={{
             // alignSelf: 'center',
             textAlign: 'center',
@@ -34,10 +36,17 @@ const Landing = () => {
             src="/landing/landing_svg.svg"
             alt=""
             width={'100%'}
-            height={'auto'}
+            height={useMediaQuery('(max-width:1382px)') ? 500 : 'auto'}
           />
         </Box>
-        <Box sx={{ px: '3%' }}>
+        <Box
+          sx={{
+            px: '3%',
+            position: useMediaQuery('(max-width:1382px)')
+              ? 'absolute'
+              : 'relative',
+          }}
+        >
           <RegisterBox />
         </Box>
       </div>

@@ -116,6 +116,7 @@ const RegisterBox1 = ({ currentPage, setCurrentPage }: any) => {
         maxWidth: 620,
         // minWidth: 450,
         maxHeight: 1000,
+        backgroundColor: "#ffffffCC"
       }}
     >
       <form onSubmit={formikProps.handleSubmit}>
